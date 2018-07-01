@@ -5,6 +5,7 @@ services:
   elasticsearch:
     build:
       context: elasticsearch/
+    image: azarea/elasticsearch
     volumes:
       - ./elasticsearch/config/elasticsearch.yml:/usr/share/elasticsearch/config/elasticsearch.yml:ro
     ports:
@@ -18,6 +19,7 @@ services:
   logstash:
     build:
       context: logstash/
+    image: azarea/logstash
     volumes:
       - ./logstash/config/logstash.yml:/usr/share/logstash/config/logstash.yml:ro
       - ./logstash/pipeline:/usr/share/logstash/pipeline:ro
@@ -33,6 +35,7 @@ services:
   kibana:
     build:
       context: kibana/
+    image: azarea/kibana
     volumes:
       - ./kibana/config/:/usr/share/kibana/config:ro
     ports:
@@ -45,4 +48,4 @@ services:
 networks:
 
   elk:
-    driver: bridge
+    driver: overlay
